@@ -1,0 +1,3 @@
+../Core/Src/comtask.c:22:6:RegisterCommand	24	static
+../Core/Src/comtask.c:29:5:commTask	16	static
+../Core/Src/comtask.c:71:6:handleCommand	104	static

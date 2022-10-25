@@ -1,0 +1,5 @@
+../Core/Src/Flash.c:26:6:pageSelect	16	static
+../Core/Src/Flash.c:34:6:pageErase	24	static
+../Core/Src/Flash.c:44:6:pageProgram	16	static
+../Core/Src/Flash.c:59:6:eraseIT	24	static
+../Core/Src/Flash.c:70:6:programIT	8	static

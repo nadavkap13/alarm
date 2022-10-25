@@ -1,0 +1,10 @@
+../Core/Src/Alarm.c:14:6:Alarm_Create	16	static
+../Core/Src/Alarm.c:51:6:Alarm_Name	16	static
+../Core/Src/Alarm.c:57:6:Alarm_Datetime	16	static
+../Core/Src/Alarm.c:68:6:Alarm_Repetition	16	static
+../Core/Src/Alarm.c:73:6:Alarm_Tone	16	static
+../Core/Src/Alarm.c:79:6:Alarm_Snooze_count	16	static
+../Core/Src/Alarm.c:86:5:Alarm_Time_Compare	16	static
+../Core/Src/Alarm.c:103:6:Alarm_Delete	32	static
+../Core/Src/Alarm.c:118:6:Alarm_Delete_All	8	static
+../Core/Src/Alarm.c:122:6:Alarm_List	16	static

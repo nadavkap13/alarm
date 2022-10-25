@@ -1,0 +1,2 @@
+../Core/Src/CLI.c:19:6:cmdAlarm_Name	24	static
+../Core/Src/CLI.c:25:6:initCLI	4	static
