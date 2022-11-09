@@ -1,9 +1,9 @@
-../Core/Src/mymain.c:25:5:_write	24	static
-../Core/Src/mymain.c:30:6:main_menu	8	static
+../Core/Src/mymain.c:27:5:_write	24	static
+../Core/Src/mymain.c:31:6:main_menu	8	static
 ../Core/Src/mymain.c:37:6:create_alarm	128	static
-../Core/Src/mymain.c:75:6:flashtoarry	24	static
-../Core/Src/mymain.c:84:5:mymaininit	8	static
-../Core/Src/mymain.c:102:6:led_func	24	static
-../Core/Src/mymain.c:116:6:comtask_func	16	static
-../Core/Src/mymain.c:130:6:buzzer_func	16	static
-../Core/Src/mymain.c:153:6:alarm_func	16	static
+../Core/Src/mymain.c:71:6:flashtoarry	32	static
+../Core/Src/mymain.c:79:5:mymaininit	8	static
+../Core/Src/mymain.c:97:6:led_func	24	static
+../Core/Src/mymain.c:109:6:comtask_func	16	static
+../Core/Src/mymain.c:121:6:buzzer_func	16	static
+../Core/Src/mymain.c:144:6:alarm_func	16	static

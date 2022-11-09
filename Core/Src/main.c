@@ -73,7 +73,7 @@ const osThreadAttr_t LED_TASK_attributes = {
 osThreadId_t COMTASKHandle;
 const osThreadAttr_t COMTASK_attributes = {
   .name = "COMTASK",
-  .stack_size = 256 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for BUZZER_TASK */
@@ -231,7 +231,8 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */  HAL_Init();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -283,7 +284,7 @@ int main(void)
   COMTASKHandle = osThreadNew(comtask_func, NULL, &COMTASK_attributes);
 
   /* creation of BUZZER_TASK */
-  //BUZZER_TASKHandle = osThreadNew(buzzer_func, NULL, &BUZZER_TASK_attributes);
+  BUZZER_TASKHandle = osThreadNew(buzzer_func, NULL, &BUZZER_TASK_attributes);
 
   /* creation of ALARM_TASK */
   ALARM_TASKHandle = osThreadNew(alarm_func, NULL, &ALARM_TASK_attributes);
@@ -534,6 +535,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(SW3_GPIO_Port, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 

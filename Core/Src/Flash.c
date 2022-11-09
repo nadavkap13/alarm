@@ -11,8 +11,9 @@
 static int flashindex = 0;
 #define ALARM_MAX 32
 extern ALARM ALARMS[ALARM_MAX];
+int arryy[32] = {23,34,45,345,34,34};
 
-uint32_t adress = (0x08081800UL);
+uint32_t adress = (0x08080000UL);
 
 uint32_t pageerror = 0;
 
@@ -27,7 +28,7 @@ void pageSelect (FLASH_EraseInitTypeDef * page)
 {
 	page->TypeErase = FLASH_TYPEERASE_PAGES;
 	page->Banks = FLASH_BANK_2;
-	page->Page = 259;
+	page->Page = 256;
 	page->NbPages = 1;
 }
 
@@ -43,11 +44,11 @@ void pageErase()
 
 void pageProgram ()
 {
-	int flashindex = 0;
+	uint32_t flashindex = 0;
 
-	for (int i = 0 ; i<256; i++)
+	for (int i = 0 ; i<24; i++)
 	{
-		if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, adress+flashindex, *(uint64_t*)(ALARMS+flashindex)) != HAL_OK) {
+		if (HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD, adress+flashindex, *(uint64_t*)(arryy+flashindex)) != HAL_OK) {
 			printf("Program failed\r\n");
 			break;
 		}

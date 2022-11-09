@@ -15,36 +15,43 @@ void Alarm_Create(char name[20] , DateTime * datetime)
 {
 	if(alarmcount == 0){
 		strcpy(ALARMS[alarmcount].name ,name);
+		ALARMS[alarmcount].datetime.sec = 0;
 		ALARMS[alarmcount].datetime.min = datetime->min;
 		ALARMS[alarmcount].datetime.hours = datetime->hours;
-		ALARMS[alarmcount].datetime.weekDay = datetime->weekDay;
+		ALARMS[alarmcount].datetime.weekDay =0;
 		ALARMS[alarmcount].datetime.day = datetime->day;
 		ALARMS[alarmcount].datetime.month = datetime->month;
 		ALARMS[alarmcount].datetime.year = datetime->year;
+		ALARMS[alarmcount].isfull=0;
 		alarmcount++;
+		pageErase ();
+		pageProgram ();
+		return;
 	}
-	 if (alarmcount == ALARM_MAX)
+
+	 if (alarmcount == ALARM_MAX){
 		 printf("Cant add anymore alarms pls try again later \r\n");
+		 return;
+	 }
 
-	 return;
 
-	for(int i=0;i<sizeof(ALARMS);i++){
-	   	if (Alarm_Time_Compare(i,datetime) == 1){
-	   		for(int j=sizeof(ALARMS);j>i+1;j--){
-	   			ALARMS[j] = ALARMS[j--];
-	   		}
-	   	}
+//	for(int i=0;i<sizeof(ALARMS);i++){
+//	   	if (Alarm_Time_Compare(i,datetime) == 1){
+//	   		for(int j=sizeof(ALARMS);j>i+1;j--){
+//	   			ALARMS[j] = ALARMS[j--];
+//	   		}
+//	   	}
 			strcpy(ALARMS[alarmcount].name ,name);
-			ALARMS[i].datetime.min = datetime->min;
-			ALARMS[i].datetime.hours = datetime->hours;
-			ALARMS[i].datetime.weekDay = datetime->weekDay;
-			ALARMS[i].datetime.day = datetime->day;
-			ALARMS[i].datetime.month = datetime->month;
-			ALARMS[i].datetime.year = datetime->year;
-			ALARMS[i].isfull = 1;
+			ALARMS[alarmcount].datetime.min = datetime->min;
+			ALARMS[alarmcount].datetime.hours = datetime->hours;
+			ALARMS[alarmcount].datetime.weekDay = datetime->weekDay;
+			ALARMS[alarmcount].datetime.day = datetime->day;
+			ALARMS[alarmcount].datetime.month = datetime->month;
+			ALARMS[alarmcount].datetime.year = datetime->year;
+			ALARMS[alarmcount].isfull++;
 			alarmcount++;
-			break;
-		}
+//			break;
+//		}
 	 pageErase ();
 	 pageProgram ();
 }
@@ -85,19 +92,18 @@ void Alarm_Snooze_count(ALARM * alarm,int Snooze_count )
 
 int Alarm_Time_Compare(int location ,DateTime * datetime)
 {
-
-			if (ALARMS[location].datetime.min < datetime->min){
-				if (ALARMS[location].datetime.hours < datetime->hours){
-					if (ALARMS[location].datetime.weekDay < datetime->weekDay){
-						if (ALARMS[location].datetime.day < datetime->day){
-							if (ALARMS[location].datetime.month < datetime->month){
-								if (ALARMS[location].datetime.year < datetime->year)
-									return 1;
-							}
-						}
+	if (ALARMS[location].datetime.min < datetime->min){
+		if (ALARMS[location].datetime.hours < datetime->hours){
+			if (ALARMS[location].datetime.weekDay < datetime->weekDay){
+				if (ALARMS[location].datetime.day < datetime->day){
+					if (ALARMS[location].datetime.month < datetime->month){
+						if (ALARMS[location].datetime.year < datetime->year)
+							return 1;
 					}
 				}
 			}
+		}
+	}
 	return 0;
 }
 void Alarm_Delete(char name[20])
@@ -112,8 +118,10 @@ void Alarm_Delete(char name[20])
 		}
 		 printf("ther is no alarm with the name: %s \r\n", name);
 	}
+
 	pageErase ();
 	pageProgram ();
+
 }
 void Alarm_Delete_All()
 {

@@ -17,6 +17,7 @@ extern  UART_HandleTypeDef huart2;
 extern int alarm_on;
 extern Rtc rtc;
 extern DateTime dateTime2;
+extern ALARM ALARMS_check[32];
 int funcounter = 0;
 
 void RegisterCommand(char *CommandName, HandlerFunc Func, void *obj) {
@@ -91,7 +92,8 @@ void handleCommand() {
 	 }
 	 else if (strcmp(cmd, "list") == 0)
 		 	 {
-		 Alarm_List();
+		 ALARM *alarm = (ALARM*) (0x08080000UL );
+		 ALARMS_check[0] = *alarm;
 		 	 }
 	 else if (strcmp(cmd, "create") == 0)
 	 	 {

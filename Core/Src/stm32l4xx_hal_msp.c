@@ -80,6 +80,10 @@ void HAL_MspInit(void)
   HAL_NVIC_SetPriority(FLASH_IRQn, 5, 0);
   /* FLASH_IRQn interrupt configuration */
   HAL_NVIC_EnableIRQ(FLASH_IRQn);
+  /* FPU_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(FPU_IRQn, 5, 0);
+  /* FPU_IRQn interrupt configuration */
+  HAL_NVIC_EnableIRQ(FPU_IRQn);
 
   /* USER CODE BEGIN MspInit 1 */
 
@@ -178,6 +182,9 @@ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
   /* USER CODE END TIM3_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_TIM3_CLK_ENABLE();
+    /* TIM3 interrupt Init */
+    HAL_NVIC_SetPriority(TIM3_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(TIM3_IRQn);
   /* USER CODE BEGIN TIM3_MspInit 1 */
 
   /* USER CODE END TIM3_MspInit 1 */
@@ -226,6 +233,9 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
   /* USER CODE END TIM3_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_TIM3_CLK_DISABLE();
+
+    /* TIM3 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(TIM3_IRQn);
   /* USER CODE BEGIN TIM3_MspDeInit 1 */
 
   /* USER CODE END TIM3_MspDeInit 1 */
@@ -273,6 +283,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+    /* USART2 interrupt Init */
+    HAL_NVIC_SetPriority(USART2_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspInit 1 */
 
   /* USER CODE END USART2_MspInit 1 */
@@ -302,6 +315,8 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     */
     HAL_GPIO_DeInit(GPIOA, USART_TX_Pin|USART_RX_Pin);
 
+    /* USART2 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(USART2_IRQn);
   /* USER CODE BEGIN USART2_MspDeInit 1 */
 
   /* USER CODE END USART2_MspDeInit 1 */
